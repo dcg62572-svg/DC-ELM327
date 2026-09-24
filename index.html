@@ -11,7 +11,25 @@
   <main class="landing">
     <div class="ambient ambient-one"></div><div class="ambient ambient-two"></div>
     <figure class="cover"><img src="assets/dc-elm327.jpg" alt="DC ELM327 junto al mar con vehículos"></figure>
+    <audio id="waves" loop preload="none"><source src="assets/night-waves.mp3" type="audio/mpeg"></audio>
+    <button class="audio-toggle" id="audioToggle" type="button" aria-pressed="false">ACTIVAR OLAS <span>◉</span></button>
     <a class="enter" href="https://dcg0.github.io/DC-carECU/" target="_blank" rel="noopener noreferrer">ENTRAR A DC-carECU <span>↗</span></a>
   </main>
+  <script>
+    const waves = document.getElementById('waves');
+    const audioToggle = document.getElementById('audioToggle');
+    waves.volume = 0.22;
+    audioToggle.addEventListener('click', async () => {
+      if (waves.paused) {
+        await waves.play();
+        audioToggle.innerHTML = 'OLAS ACTIVAS <span>◉</span>';
+        audioToggle.setAttribute('aria-pressed', 'true');
+      } else {
+        waves.pause();
+        audioToggle.innerHTML = 'ACTIVAR OLAS <span>◉</span>';
+        audioToggle.setAttribute('aria-pressed', 'false');
+      }
+    });
+  </script>
 </body>
 </html>
